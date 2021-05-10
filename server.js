@@ -8,6 +8,24 @@ const middlewares = jsonServer.defaults()
 Axios.defaults.baseURL = 'http://localhost:9090'
 const server = express()
 
+server.use((req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*')
+  next()
+})
+
+const timer = (time = 1000) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve()
+    }, time)
+  })
+}
+
+server.use(async (req, res, next) => {
+  await timer()
+  next()
+}) 
+
 // req.body 处理
 server.use(express.json())
 server.use(express.urlencoded({ extended: true  }))
