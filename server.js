@@ -81,7 +81,8 @@ server.post('/sign-in', async (req, res) => {
   if (isOK) {
     res.send({
       code: 0,
-      msg: '登录成功'
+      msg: '登录成功',
+      data: user
     })
   } else {
     res.send({
